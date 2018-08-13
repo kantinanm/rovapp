@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instascan</title>
+    <script type="text/javascript" src="public/js/instascan.min.js"></script>
+	<!--<script src="//code.jquery.com/jquery-3.0.0.min.js"></script> -->
+	    
+		<!--<link href="public/css/toastee/styles.css" rel="stylesheet">-->
+	  	<!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
+
+
+       <!-- <script type="text/javascript" src="public/js/toastee/jquery.toastee.0.1.js"></script>
+        <script type="text/javascript" src="public/js/toastee/main.js"></script>-->
+
+		
+  </head>
+  <body>
+    <video id="preview"></video>
+	<div id="my-toast-location"></div>
+
+    <script type="text/javascript">
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+		  $("#my-toast-location").html(content);
+
+		  Notifier.info(content);
+		  /* $('#my-toast-location').toastee(
+		   {
+                        type: 'Success',
+                        header: 'Token',
+                        message: content,
+                        color: 'yellow',
+                        background: '#FFBB00',
+                        width: 500,
+                        height: 200,
+                        fadeout: 1000
+                    }
+		   );*/
+        console.log(content);
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script type="text/javascript" src="public/js/Notifier/notifier.js"></script>
+  </body>
+</html>

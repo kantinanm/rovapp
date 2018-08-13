@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ROV</title>
+
+    <!-- Bootstrap -->
+	<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    .container .row .col-md-12 #dataTables-example {
+	text-align: center;
+	}
+
+	body{
+	    font-family:'Lato', 'Helvetica Neue', Arial, Helvetica,'Kanit', sans-serif
+	}
+    </style>
+	 <link rel="stylesheet" type="text/css" href="public/js/Semantic-UI-CSS/semantic.css">
+ </head>
+     <script src="public/jquery/jquery-3.1.1.min.js"></script>
+	 <script src="public/js/bootstrap.min.js"></script>
+	 
+     <script type="text/javascript" src="public/js/instascan.min.js"></script>
+ <body>
+      
+    <div class="jumbotron">
+      <div class="container">
+        <h1>NU ROV E-Sport 2018</h1>
+        <p>โครงการฝึกอบรมเพื่อเสริมสร้างความเข้าใจในอุตสาหกรรมเกมและการแข่งขันกีฬา E-sport</p>
+      
+      </div>
+    </div>
+
+
+   <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Reception Camara</h2>
+			<video id="preview"></video>
+        </div>
+
+        <div class="col-md-4">
+          <h2>ขั้นตอน</h2>
+		  <img class="ui image" src="public/img/staff.png"/>
+          <p>
+		    <ul class="ui list">
+			  <li>รับโทรศัพท์มือถือที่มี QR-Code แล้วนำมา scan</li>
+			  <li>ทวนชื่อ-นามสกุล ผู้ลงทะเบียนเข้าร่วมงาน อีกคร้ัง</li>
+			  <li>หยิบ Ticket  และสอบถามว่าผู้เข้าร่วมงานต้องการเล่น เกม ROV กับแขกรับเชิญหรือไม่</li>
+			  <li>ฉีกหางบัตรใส่กล่อง <strong>"ลุ้นรางวัน"</strong> , และหางบัตรเข้าร่วมเล่นเกม กรณี ผู้เข้าร่วมงานต้องการเล่น เกม ROV กับแขกรับเชิญพิเศษ แยกใส่กล่อง <strong>"ร่วมเล่นเกม"</strong></li>
+			</ul>
+		  </p>
+    
+
+		  <div class="row"><!--row6-->
+            <div class="col-sm-2">      
+    			<!--<button type="button" class="btn btn-outline btn-primary">Max Week :</button> -->
+        	</div> <!-- col-sm-2-->
+            <div class="col-md-1">      
+    	<!--		<input type="text" class="form-control" id="usr" disabled value="40"/>-->
+          </div> <!-- col-md-1-->
+          <div class="col-md-9" align="right">      
+    			<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" id="btnDetail">Modal</button>
+          </div> <!-- col-md-1-->
+          </div> <!--row6-->
+      
+
+        </div>
+      </div>
+ </div>
+      <hr>
+
+  <div class="container">
+      <div class="col-lg-12">
+
+	  </div>
+ </div>
+
+
+          <div class="row">
+            <div class="col-md-12">       
+        
+                 <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-md">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">ยินดีต้อนรับ</h4>
+                        </div>
+                        <div class="modal-body">
+         <!--                 <p>Incoming Order =  ชิ้น </p>
+                          <p>Invertory =  ชิ้น </p>
+                          <p>Backorder Order =  ชิ้น</p>-->
+                          <div class="row"><!--row1-->
+          					  <div class="col-md-4" align="right"> 
+                              <span style="font-size:18px;color:#F00">ชื่อ - นามสกุล : </span>
+                              </div>
+                              <div class="col-md-8"> 
+                              <span><div id="fullname"></div></span>
+                              </div>
+                          </div><!--row1-->
+                          
+                          <div class="row"><!--row2-->
+          					  <div class="col-md-4" align="right"> 
+                              <span style="font-size:18px;color:#F00">Email  : </span>
+                              </div>
+                              <div class="col-md-8"> 
+                              <span><div id="email"></div></span>
+                              </div>
+                          </div><!--row2-->
+                          
+ 
+
+						  <div class="row"><!--row3-->
+          					  <div class="col-md-4" align="right"> 
+                              <span style="font-size:18px;color:#F00">Garena-ID  : </span>
+                              </div>
+                              <div class="col-md-8"> 
+							   <span><div id="garena_id"></div></span>
+						      </div>
+                          </div><!--row3-->
+
+						  <div class="row"><!--row3-->
+          					  <div class="col-md-4" align="right"> 
+                              <span style="font-size:18px;color:#F00">ประเภท  : </span>
+                              </div>
+                              <div class="col-md-8"> 
+								<span><div id="membertype"></div></span>
+                              </div>
+                          </div><!--row3-->
+
+                         <div class="row"><!--row4-->
+                              <div class="col-sm-12"> 
+                          			 <hr/>
+                              </div>
+                          </div><!--row4-->
+                           <div class="row"><!--row4-->
+                              <div class="col-sm-3" align="right"> 
+                          			<span style="font-size:24px;color:#090">Token ID  : </span> 
+                              </div>
+                              <div class="col-sm-9"> 
+                          			<span><div id="token_id"></div></span>
+                              </div>
+                          </div><!--row4-->
+                          
+                        </div> <!--modal-body-->
+                        <div class="modal-footer">
+                        <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                     <!-- <button type="button" id="btnAssignOrder" class="btn btn-info" data-dismiss="modal" >OK</button> -->
+					  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearModal()">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+            </div><!--col-md-12-->
+        </div>   <!--row-->
+
+
+	<script src="public/js/Semantic-UI-CSS/semantic.min.js"></script>
+	<script type="text/javascript">
+		
+		function loadData(token){
+			$("#loadingTeamDiv").addClass("ui loading form");
+            $.ajax
+            ({
+                type: "GET",
+                url: "http://localhost:3000/reader/"+token,
+                dataType: 'json',
+                contentType : 'application/json; charset=utf-8',
+                //json object to sent to the authentication url
+                success: function (data) {
+
+                    //alert("Thanks!");
+                    console.log(data);
+                    if(data.status==1){
+                        //ok
+                        // binding
+
+                        $("#fullname").html(data.teamname);
+						$("#email").html(data.email);
+						$("#garena_id").html(data.garena_id);
+						$("#membertype").html(data.member_type);
+						$("#token_id").html(data.unique_id);
+
+                      $('#btnDetail').trigger( "click" );
+                        
+                    }else{
+
+                    }
+                    clearloadingTeamDiv();
+                }
+            })
+
+		}
+
+		function clearloadingTeamDiv(){
+            //alert("Clear");
+            $("#loadingTeamDiv").removeClass("ui loading form");
+
+        }
+
+		function clearModal(){
+			   $("#fullname").html("");
+			   $("#email").html("");
+			   $("#garena_id").html("");
+			   $("#membertype").html("");
+			   $("#token_id").html("");
+			console.log("clearModal");
+		}
+
+	</script>
+
+	  <script type="text/javascript">
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+		//$("#my-toast-location").html(content);
+
+		 //Notifier.info(content);
+		 loadData(content);
+		//$('#btnDetail').trigger( "click" );
+
+
+        console.log(content);
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
+
+	<script type="text/javascript" src="public/js/Notifier/notifier.js"></script>
+		
+ </body>
+</html>

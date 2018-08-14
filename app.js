@@ -22,8 +22,8 @@ app.get('/', function(req, res) {
 app.get('/reader/:token', function (req, response) {
 
   //req.params.token
-    var url_path = 'http://localhost:8000/participant/5My79LDAM5HtH3KzhWCqbc2B0HGH07sBdnMUamU6';
-    
+    var url_path = 'http://www.ecpe.nu.ac.th/rov/participant/'+req.params.token;
+    console.log('url: '+url_path);
 	util.getData(url_path,function(result) {
 	
 	 console.log('callback: '+result); 
@@ -35,7 +35,7 @@ app.get('/reader/:token', function (req, response) {
 
 app.get('/test', function (req, res) {
 	 //res.send('GET request to the homepage')
-	    var url_path = 'http://localhost:8000/home/participant';
+	    var url_path = 'http://www.ecpe.nu.ac.th/rov/home/participant';
 		
 		util.getUTF8(url_path,function(utf8) {
 		htmlToJson.parse(utf8, {

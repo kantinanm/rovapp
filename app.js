@@ -6,6 +6,7 @@ var util = require('./util');
 var app = express();
 var path = require('path');
 //var public = path.join(__dirname, 'public');
+const https = require('https');
 
 app.use(bodyParser.json());
 app.use("/public", express.static(__dirname + "/public"));
@@ -19,10 +20,38 @@ app.get('/', function(req, res) {
     res.sendFile('public/page.html', { root: __dirname });
 });
 
+app.get('/pull', function(req, res) {
+	
+	var url_path = 'https://esport.nu.ac.th/home/participant'+req.params.token;
+    console.log('url: '+url_path);
+	util.getData(url_path,function(result) {
+	
+	 console.log('callback: '+result); 
+	 res.setHeader('Content-Type', 'application/json');
+	 res.send(result);
+	});
+
+});
+
+app.get('/participant/action/:token', function(req, res) {
+	
+	 console.log("req "+req.params.token);
+	 //"token":"E4fVzlMSsrsB0QdA8JH0xQo0dxEiIq1g99thq9rV","action":"join"
+	 var url_path = 'https://esport.nu.ac.th/participant/action/'+req.params.token;
+	 console.log('url: '+url_path);
+	 util.getData(url_path,function(result) {
+	 
+	  console.log('callback: '+result); 
+		res.setHeader('Content-Type', 'application/json');
+		res.send(result);
+	 });
+	  
+});
+
 app.get('/reader/:token', function (req, response) {
 
   //req.params.token
-    var url_path = 'http://www.ecpe.nu.ac.th/rov/participant/'+req.params.token;
+    var url_path = 'https://esport.nu.ac.th/participant/'+req.params.token;
     console.log('url: '+url_path);
 	util.getData(url_path,function(result) {
 	
@@ -35,7 +64,7 @@ app.get('/reader/:token', function (req, response) {
 
 app.get('/test', function (req, res) {
 	 //res.send('GET request to the homepage')
-	    var url_path = 'http://www.ecpe.nu.ac.th/rov/home/participant';
+	    var url_path = 'https://esport.nu.ac.th/home/participant';
 		
 		util.getUTF8(url_path,function(utf8) {
 		htmlToJson.parse(utf8, {

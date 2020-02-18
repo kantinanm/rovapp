@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ROV</title>
+    <title>NU E-Sport</title>
 
     <!-- Bootstrap -->
 	<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <link href="public/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
     .container .row .col-md-12 #dataTables-example {
-	text-align: center;
-	}
+      text-align: center;
+    }
 
-	body{
-	    font-family:'Lato', 'Helvetica Neue', Arial, Helvetica,'Kanit', sans-serif
-	}
+    body{
+        font-family:'Lato', 'Helvetica Neue', Arial, Helvetica,'Kanit', sans-serif
+    }
     </style>
 	 <link rel="stylesheet" type="text/css" href="public/js/Semantic-UI-CSS/semantic.css">
  </head>
@@ -29,8 +29,8 @@
       
     <div class="jumbotron">
       <div class="container">
-        <h1>NU ROV E-Sport 2018</h1>
-        <p>โครงการฝึกอบรมเพื่อเสริมสร้างความเข้าใจในอุตสาหกรรมเกมและการแข่งขันกีฬา E-sport</p>
+        <h1>อีสปอร์ต-กีฬาบุคลากร-ม.นเรศวร</h1>
+        <p>E-sport</p>
       
       </div>
     </div>
@@ -152,8 +152,8 @@
                         </div> <!--modal-body-->
                         <div class="modal-footer">
                         <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                     <!-- <button type="button" id="btnAssignOrder" class="btn btn-info" data-dismiss="modal" >OK</button> -->
-					  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearModal()" >Close</button>
+                      <button type="button" id="btnJoin" class="btn btn-info" data-dismiss="modal" onclick="approveParticipant()" >เข้าร่วมงาน</button> 
+					            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearModal()" >Close</button>
                         </div>
                       </div>
                     </div>
@@ -163,7 +163,33 @@
 
 
 	<script src="public/js/Semantic-UI-CSS/semantic.min.js"></script>
-	<script type="text/javascript">
+  <script type="text/javascript">
+    $(document).ready(function () {
+        //swal("Hello world!");
+    });
+
+    function approveParticipant(){
+        //$("#token_id").html();
+        console.log("token is "+$("#token_id").html());
+        $.ajax
+				({
+          type: "GET",
+          url: "http://localhost:3000/participant/action/"+$("#token_id").html(),
+          dataType: 'json',
+          contentType : 'application/json; charset=utf-8',
+					success: function (result) {
+						console.log(result);
+						if(result.status==1){
+							console.log("update completed.");
+							//after success
+							swal({title: "ลงทะเบียนเข้าร่วมงาน เรียบร้อย",    icon: "success"   , button: "OK",   closeModal: false });
+						}else{
+							console.log("fail to update.");
+							swal({title: "เกิดข้อผิดพลาดในการลงทะเบียนเข้าร่วมงาน",  icon: "warning",   button: "OK",   closeModal: false });
+						}
+					}
+				});
+    }
 		
 		function loadData(token){
 
@@ -186,10 +212,10 @@
 						console.log("Found "+token);
 
                         $("#fullname").html(data.fullname);
-						$("#email").html(data.email);
-						$("#garena_id").html(data.garena_id);
-						$("#membertype").html(data.member_type);
-						$("#token_id").html(data.unique_id);
+                        $("#email").html(data.email);
+                        $("#garena_id").html(data.garena_id);
+                        $("#membertype").html(data.member_type);
+                        $("#token_id").html(data.unique_id);
 
                       $('#btnDetail').trigger( "click" );
                         
@@ -215,7 +241,9 @@
 			   $("#membertype").html("");
 			   $("#token_id").html("");
 			console.log("clearModal");
-		}
+    }
+    
+    
 
 	</script>
 
@@ -241,9 +269,9 @@
         console.error(e);
       });
     </script>
-<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> 
 
 	<script type="text/javascript" src="public/js/Notifier/notifier.js"></script>
-		
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  </body>
 </html>

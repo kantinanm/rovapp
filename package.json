@@ -4,7 +4,9 @@
   "description": "nodejs application for qr-code scanner",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "nodemon app.js"
   },
   "keywords": [
     "express",
@@ -18,8 +20,10 @@
     "express": "^4.16.3",
     "html-to-json": "^0.6.0",
     "http": "0.0.0",
+    "https": "^1.0.0",
     "iconv-lite": "^0.4.23",
     "instascan": "^1.0.0",
+    "nodemon": "^2.0.2",
     "path": "^0.12.7",
     "querystring": "^0.2.0"
   }

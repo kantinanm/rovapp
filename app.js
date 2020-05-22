@@ -13,11 +13,12 @@ app.use("/public", express.static(__dirname + "/public"));
 
 // viewed at http://localhost:8080
 app.get('/scan', function(req, res) {
-    res.sendFile('public/scan.html', { root: __dirname });
+	res.sendFile('public/scan.html', { root: __dirname });
 });
 
 app.get('/', function(req, res) {
-    res.sendFile('public/page.html', { root: __dirname });
+	res.sendFile('public/display.html', { root: __dirname });
+    //res.sendFile('public/page.html', { root: __dirname });
 });
 
 app.get('/pull', function(req, res) {
